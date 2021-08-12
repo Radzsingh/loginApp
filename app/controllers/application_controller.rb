@@ -1,3 +1,4 @@
+# Controls the flow of application before serving requests
 class ApplicationController < ActionController::Base
   before_action :current_user
 
@@ -7,13 +8,18 @@ class ApplicationController < ActionController::Base
 
   def require_user_logged_in!
     # allows only logged in user
-    redirect_to sign_in_path, alert: 'You must be signed in' if Current.user.nil?
+    redirect_to sign_in_path, alert: 'You must be signed in' if current_user.nil?
   end
 
-  def valid_account?
+  def account_locked?
     user = User.find_by(user_name: params[:user_name])
-    if user.present?
-       redirect_to root_path, notice: 'User account is locked.' if user.login_attempt >= 3
+    user && user.login_attempts > 2 ? true : false
+  end
+
+  def filter_access
+    if account_locked?
+      flash[:notice]= 'User account is locked.'
+      redirect_to root_path and return
     end
   end
 end

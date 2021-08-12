@@ -14,11 +14,11 @@ ActiveRecord::Schema.define(version: 2021_08_11_151156) do
 
   create_table "users", force: :cascade do |t|
     t.string "user_name", null: false
-    t.string "password_encrypted"
-    t.integer "login_attempt", default: 0
+    t.string "encypted_password"
+    t.integer "login_attempts", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index "\"username\"", name: "index_users_on_username", unique: true
+    t.index ["user_name"], name: "index_users_on_user_name", unique: true
   end
 
 end

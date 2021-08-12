@@ -39,9 +39,9 @@ RSpec.describe SessionsController, :type => :controller do
   describe "DESTROY sign_up" do
     create_user
     login_user
-    it "has a 200 code if user logged out" do
+    it "has a 302 code if user logged out" do
       delete :destroy
-      expect(response.status).to eq(200)
+      expect(response.status).to eq(302)
     end
   end
 end

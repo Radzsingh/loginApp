@@ -75,25 +75,25 @@ RSpec.describe User, :type => :model do
   end
 
   describe "record_attempt" do
-    it "must increment the value of login_attempt" do
+    it "must increment the value of login_attempts" do
       subject.record_attempt
-      expect(subject.login_attempt).to eq 1
+      expect(subject.login_attempts).to eq 1
     end
   end
 
   describe "reset_attempt" do
-    it "must set the value of login_attempt to 0 if initial value is greater than 0" do
-      subject.login_attempt = 2
+    it "must set the value of login_attempts to 0 if initial value is greater than 0" do
+      subject.login_attempts = 2
       subject.save
       subject.reset_attempt
-      expect(subject.login_attempt).to eq 0
+      expect(subject.login_attempts).to eq 0
     end
 
-    it "must set the value of login_attempt to 0 if initial value is 0 or smaller" do
-      subject.login_attempt = 0
+    it "must set the value of login_attempts to 0 if initial value is 0 or smaller" do
+      subject.login_attempts = 0
       subject.save
       subject.reset_attempt
-      expect(subject.login_attempt).to eq 0
+      expect(subject.login_attempts).to eq 0
     end
   end
 end
