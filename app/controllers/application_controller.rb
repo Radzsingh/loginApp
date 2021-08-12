@@ -7,11 +7,13 @@ class ApplicationController < ActionController::Base
   end
 
   def account_locked?
+    # check for locked account
     user = User.find_by(user_name: params[:user_name])
     user && user.login_attempts > 2 ? true : false
   end
 
   def filter_access
+    # redirect if account is locked
     if account_locked?
       flash[:notice]= 'User account is locked.'
       redirect_to root_path and return

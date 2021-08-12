@@ -11,9 +11,11 @@ class SessionsController < ApplicationController
     if @user.present? && @user.authenticate(params[:password])
       # sets up user.id sessions
       session[:user_id] = @user.id
+      # reset the failed logged in attempts
       @user.reset_attempt
       redirect_to root_path, notice: 'Logged in successfully'
     else
+      # keep record of the failed logins
       @user.record_attempt if @user.present?
       flash[:alert] = 'Invalid email or password'
       flash[:alert] = 'User account is locked!' if account_locked?
