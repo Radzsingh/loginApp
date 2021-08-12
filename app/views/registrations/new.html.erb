@@ -1,0 +1,15 @@
+<%=  @user.errors if @user %>
+<h1>Sign Up</h1>
+ <%= form_with model: @user, url: sign_up_path do |f| %>
+   <p>
+   <%= f.label 'username' %><br>
+   <%= f.text_field :user_name, required: true %>
+   </p>
+   <p>
+   <%= f.label 'password' %><br>
+   <%= f.password_field :password, required: true %>
+   </p>
+   <p>
+   <%= f.submit 'Sign Up' %>
+   </p>
+ <% end %>
