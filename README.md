@@ -1,24 +1,19 @@
-# README
+# LoginApp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Application allow three wrong attempts of login and then block the account.
 
-Things you may want to cover:
+Steps to setup:
 
-* Ruby version
+* bundle install
+* rails db:create
+* rails db:migrate
+* foreman up
+* Server will be up at 0.0.0/3040
 
-* System dependencies
+To run the test suits
+* Go to the project directory
+* Run rspec .
 
-* Configuration
+To get the coverage report
+* coverage/index.html
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
